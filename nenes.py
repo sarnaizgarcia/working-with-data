@@ -1,9 +1,18 @@
 class Nene(object):
-    def __init__(self, nombre, edad, adulto_a_cargo):
+    def __init__(self, nombre, edad, juguetes):
         self.nombre = nombre
         self.edad = edad
-        self.adulto_a_cargo = adulto_a_cargo
-
-    def __repr__(self):
-        diccionario = {'nombre': self.nombre, 'edad': self.edad, 'adulto a cargo': self.adulto_a_cargo.nombre}
-        return f'{diccionario}'
+        self.juguetes = juguetes
+        self.esta_registrado = False
+        self.karma = 0
+    
+    def mostrar_lista(self):
+        if self.esta_registrado:
+            self._listar_juguetes()
+        else:
+            print('EL NIÑO NO ESTA REGISTRADO EN EL SISTEMA')
+    
+    def _listar_juguetes(self):
+        for indice, juguete in enumerate(self.juguetes):
+            if juguete['mostrar'] and self.karma >= juguete['karma']:
+                print(f'{indice} .- {juguete}')
